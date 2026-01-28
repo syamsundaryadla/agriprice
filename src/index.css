@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
+
+:root {
+  /* Fresh Agricultural Theme Palette - WCAG 2.1 Compliant */
+  --color-primary: #065F46;
+  /* Deep Forest Green (Brand) */
+  --color-primary-light: #D1FAE5;
+  /* Mint Green (Backgrounds) */
+  --color-primary-dark: #064E3B;
+  /* Darker Green (Text/Hover) */
+
+  --color-secondary: #059669;
+  /* Emerald Green (Action) */
+  --color-accent: #B45309;
+  /* Earthy Amber (Focus/Highlights) */
+
+  --color-success: #10B981;
+  /* Success Green */
+  --color-error: #EF4444;
+  /* Alert Red */
+
+  --color-background: #F8FAF7;
+  /* Warm/Cool Hybrid White */
+  --color-surface: #FFFFFF;
+  /* Pure White */
+
+  /* Typography Colors */
+  --color-text-main: #111827;
+  /* Gray 900 (High Contrast) */
+  --color-text-muted: #4B5563;
+  /* Gray 600 (Secondary Info) */
+  --color-text-light: #6B7280;
+  /* Gray 500 (Legacy support) */
+
+  --color-border: #E5E7EB;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-soft: 0 4px 6px -1px rgba(6, 95, 70, 0.1), 0 2px 4px -1px rgba(6, 95, 70, 0.06);
+  --shadow-premium: 0 10px 15px -3px rgba(6, 95, 70, 0.1), 0 4px 6px -2px rgba(6, 95, 70, 0.05);
+
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Premium Card Component */
+.premium-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium);
+  border-color: var(--color-secondary);
+}
+
+/* Navbar Style */
+.header {
+  position: sticky;
+  top: 1rem;
+  z-index: 1000;
+  padding: 0 1rem;
+}
+
+.header-container {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Buttons */
+.btn-agri {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.btn-agri-primary {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(6, 95, 70, 0.39);
+}
+
+.btn-agri-primary:hover {
+  background: var(--color-secondary);
+  transform: scale(1.02);
+}
+
+.btn-agri-outline {
+  background: transparent;
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-agri-outline:hover {
+  background: var(--color-light-green);
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
