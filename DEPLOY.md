@@ -17,6 +17,13 @@ We recommend **Render** or **Railway** for free hosting.
 4. Click **Deploy**.
 5. Once deployed, copy the **onrender.com URL** (e.g., `https://agri-price-backend.onrender.com`).
 
+### Option B: Docker (Any Platform)
+If you prefer containers, we have included a `Dockerfile` in the `backend/` folder.
+1. Build: `docker build -t agri-backend ./backend`
+2. Run: `docker run -p 8000:8000 agri-backend`
+   
+This allows you to deploy to AWS ECS, DigitalOcean App Platform, or Render's "Docker" environment.
+
 ---
 
 ## 2. Deploying the Frontend (React/Vite)
