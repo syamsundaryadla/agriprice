@@ -5,3 +5,5 @@ scikit-learn
 numpy
 joblib
 python-multipart
+requests
+beautifulsoup4

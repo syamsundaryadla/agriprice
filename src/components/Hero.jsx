@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { TrendingUp, Sprout } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import './Hero.css';
 
 const Hero = () => {
+    const { currentUser } = useAuth();
     return (
         <section className="hero">
             <div className="container hero-container">
@@ -23,13 +25,21 @@ const Hero = () => {
                         to make informed decisions for your crops and business.
                     </p>
                     <div className="hero-actions">
-                        <Link to="/prices" className="btn btn-primary btn-lg">
-                            <TrendingUp size={20} style={{ marginRight: '8px' }} />
-                            View Live Prices
-                        </Link>
-                        <Link to="/predictions" className="btn btn-outline btn-lg">
-                            Get Price Forecast
-                        </Link>
+                        {currentUser ? (
+                            <>
+                                <Link to="/prices" className="btn btn-primary btn-lg" style={{ background: 'var(--color-primary)', color: 'white' }}>
+                                    <TrendingUp size={20} style={{ marginRight: '8px' }} />
+                                    View Live Prices
+                                </Link>
+                                <Link to="/predictions" className="btn btn-outline btn-lg">
+                                    Get Price Forecast
+                                </Link>
+                            </>
+                        ) : (
+                            <Link to="/auth" className="btn btn-primary btn-lg" style={{ background: 'var(--color-primary)', color: 'white', padding: '1rem 3rem' }}>
+                                Get Started / Login
+                            </Link>
+                        )}
                     </div>
                 </motion.div>
 

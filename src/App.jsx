@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Auth from './pages/Auth';
 import Profile from './pages/Profile';
 import CropDetail from './pages/CropDetail';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -21,13 +22,31 @@ function App() {
           <main style={{ flex: 1 }}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/prices" element={<LivePrices />} />
-              <Route path="/crop/:name" element={<CropDetail />} />
-              <Route path="/predictions" element={<Predictions />} />
+              <Route path="/auth" element={<Auth />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/profile" element={<Profile />} />
+
+              {/* Protected Routes */}
+              <Route path="/prices" element={
+                <ProtectedRoute>
+                  <LivePrices />
+                </ProtectedRoute>
+              } />
+              <Route path="/crop/:name" element={
+                <ProtectedRoute>
+                  <CropDetail />
+                </ProtectedRoute>
+              } />
+              <Route path="/predictions" element={
+                <ProtectedRoute>
+                  <Predictions />
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              } />
             </Routes>
           </main>
           <Footer />

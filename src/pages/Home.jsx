@@ -1,63 +1,71 @@
 import React from 'react';
 import Hero from '../components/Hero';
+import { useAuth } from '../context/AuthContext';
 import WeatherWidget from '../components/WeatherWidget';
 import IndiaMap from '../components/IndiaMap';
 import { motion } from 'framer-motion';
 import { TrendingUp, ShieldCheck, Zap } from 'lucide-react';
 
 const Home = () => {
+    const { currentUser } = useAuth();
     return (
         <div style={{ overflowX: 'hidden' }}>
             <Hero />
 
-            <div className="container" style={{ marginTop: '-4rem', position: 'relative', zIndex: 10 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        style={{ gridColumn: 'span 2' }}
-                    >
-                        <IndiaMap />
-                    </motion.div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            {/* Dashboard Section - Only for Logged In Users */}
+            {currentUser && (
+                <div className="container" style={{ marginTop: '-4rem', position: 'relative', zIndex: 10 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
                         <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="premium-card"
-                            style={{ flex: 1 }}
+                            style={{ gridColumn: 'span 2' }}
                         >
-                            <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem', color: 'var(--color-primary)' }}>
-                                <TrendingUp size={24} /> Market Insights
-                            </h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                                Tracking over 50+ commodities across 1000+ mandis daily.
-                                Get the most accurate rates powered by direct eNAM integration.
-                            </p>
-                            <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--color-light-green)', borderRadius: '12px' }}>
-                                <div style={{ fontSize: '0.8rem', fontWeight: '600', color: 'var(--color-primary)', textTransform: 'uppercase' }}>Top Gainer</div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
-                                    <span style={{ fontWeight: '700' }}>Soybean</span>
-                                    <span style={{ color: '#166534', fontWeight: '700' }}>+4.2%</span>
+                            <IndiaMap />
+                        </motion.div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                className="premium-card"
+                                style={{ flex: 1 }}
+                            >
+                                <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem', color: 'var(--color-primary)' }}>
+                                    <TrendingUp size={24} /> Market Insights
+                                </h3>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                    Tracking over 50+ commodities across 1000+ mandis daily.
+                                    Get the most accurate rates powered by direct eNAM integration.
+                                </p>
+                                <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--color-primary-light)', borderRadius: '12px' }}>
+                                    <div style={{ fontSize: '0.8rem', fontWeight: '600', color: 'var(--color-primary)', textTransform: 'uppercase' }}>Top Gainer</div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
+                                        <span style={{ fontWeight: '700' }}>Soybean</span>
+                                        <span style={{ color: 'var(--color-success)', fontWeight: '700' }}>+4.2%</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="premium-card"
-                        >
-                            <WeatherWidget />
-                        </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="premium-card"
+                            >
+                                <WeatherWidget />
+                            </motion.div>
+                        </div>
                     </div>
                 </div>
+            )}
 
-                <section style={{ marginBottom: '6rem' }}>
+            {/* Public Features Section */}
+            <div className="container">
+                <section style={{ marginBottom: '6rem', marginTop: currentUser ? '0' : '-4rem', position: 'relative', zIndex: 10 }}>
                     <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                         <h2 style={{ fontSize: '2.5rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>The AgriPrice Advantage</h2>
                         <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem' }}>Scalable, production-ready intelligence for the modern farmer.</p>

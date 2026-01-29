@@ -6,9 +6,7 @@ import {
     ZoomableGroup
 } from "react-simple-maps";
 import { scaleQuantile } from "d3-scale";
-
-// India TopoJSON
-const INDIA_TOPO_JSON = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/india/india-states.json";
+import indiaGeoJson from "../assets/india-states.json";
 
 const stateData = {
     "Punjab": 2200,
@@ -22,7 +20,16 @@ const stateData = {
     "Karnataka": 2200,
     "Tamil Nadu": 2350,
     "Bihar": 1900,
-    "Andhra Pradesh": 2280
+    "Andhra Pradesh": 2280,
+    "Telangana": 2150,
+    "Odisha": 1950,
+    "Kerala": 2450,
+    "Chhattisgarh": 2050,
+    "Assam": 1800,
+    "Jharkhand": 1850,
+    "Uttarakhand": 2100,
+    "Himachal Pradesh": 2200,
+    "Jammu and Kashmir": 2300
 };
 
 const colorScale = scaleQuantile()
@@ -43,21 +50,25 @@ const IndiaMap = () => {
             <h3 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>National Price Heatmap</h3>
             <div style={{ height: '500px', width: '100%' }}>
                 <ComposableMap
-                    projectionConfig={{ scale: 1000, center: [78, 22] }}
+                    projection="geoMercator"
+                    projectionConfig={{ scale: 1000, center: [80, 22] }}
                     width={800}
                     height={600}
                     style={{ width: "100%", height: "100%" }}
                 >
                     <ZoomableGroup zoom={1}>
-                        <Geographies geography={INDIA_TOPO_JSON}>
+                        <Geographies geography={indiaGeoJson}>
                             {({ geographies }) =>
                                 geographies.map((geo) => {
-                                    const stateName = geo.properties.ST_NM;
+                                    // Robust property check for state name
+                                    const stateName = geo.properties.ST_NM || geo.properties.NAME_1 || geo.properties.name || "Unknown";
+                                    const price = stateData[stateName];
+
                                     return (
                                         <Geography
                                             key={geo.rsmKey}
                                             geography={geo}
-                                            fill={stateData[stateName] ? colorScale(stateData[stateName]) : "#F3F4F6"}
+                                            fill={price ? colorScale(price) : "#F3F4F6"}
                                             stroke="#FFFFFF"
                                             strokeWidth={0.5}
                                             style={{

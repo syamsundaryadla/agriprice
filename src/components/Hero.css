@@ -168,6 +168,10 @@
 }
 
 @media (max-width: 968px) {
+    .hero {
+        padding: 3rem 0;
+    }
+
     .hero-container {
         flex-direction: column;
         text-align: center;
@@ -175,15 +179,28 @@
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
     }
 
     .hero-content p {
         margin-left: auto;
         margin-right: auto;
+        font-size: 1.1rem;
     }
 
     .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .btn-lg {
+        width: 100%;
         justify-content: center;
+    }
+
+    .visual-stats {
+        justify-content: center;
+        transform: none;
     }
 }

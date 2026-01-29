@@ -9,6 +9,8 @@ const Header = () => {
     const location = useLocation();
     const { currentUser, logout } = useAuth();
 
+    if (!currentUser) return null;
+
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
     const closeMenu = () => setIsMenuOpen(false);
 

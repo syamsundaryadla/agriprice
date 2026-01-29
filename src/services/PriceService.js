@@ -26,9 +26,12 @@ const fluctuate = (price) => {
 
 export const fetchLivePrices = async () => {
     // 1. Try fetching from Python Backend (eNAM Scraper)
+    // Use environment variable or fallback to localhost
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
     try {
-        console.log("Fetching from Python Backend (eNAM)...");
-        const response = await fetch('http://localhost:8000/enam-prices');
+        console.log(`Fetching from Python Backend (${API_URL})...`);
+        const response = await fetch(`${API_URL}/enam-prices`);
         // Add timeout handling if needed, but fetch usually waits
         const result = await response.json();
 

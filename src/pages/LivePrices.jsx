@@ -106,7 +106,7 @@ const LivePrices = () => {
             </div>
 
             {loading ? (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     {[1, 2, 3, 4, 5, 6].map(i => (
                         <div key={i} className="premium-card" style={{ height: '180px', opacity: 0.5 }}>
                             <div className="skeleton-pulse" style={{ width: '60px', height: '60px', borderRadius: '16px', background: '#eee' }}></div>
@@ -114,7 +114,7 @@ const LivePrices = () => {
                     ))}
                 </div>
             ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     {filteredPrices.length > 0 ? (
                         filteredPrices.map((item, idx) => (
                             <PriceCard key={item.id || idx} {...item} />
