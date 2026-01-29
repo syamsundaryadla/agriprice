@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { TrendingUp, MapPin, ChevronLeft, Calendar, Info, Bell, Share2 } from 'lucide-react';
+import { TrendingUp, MapPin, ChevronLeft, Calendar, Info, Bell, Share2, CheckCircle } from 'lucide-react';
 import TrendChart from '../components/TrendChart';
 
 const CropDetail = () => {
